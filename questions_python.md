@@ -303,34 +303,139 @@ print(result) # ['James', 'Bob', 'Mark', 'Kate', 'Sarah']
 
 ---
 
-- **Quelle est la différence entre une liste, un dictionnaire, un ensemble (``set``) et une chaîne (``str``) ?**
+- **Quelle est la différence entre une liste (``list``), un dictionnaire (``dict``), un ensemble (``set``) et une chaîne (``str``) ?**
+
+Une liste ``list`` est une collection ordonnée et modifiable qui autorise les éléments en double.
+
+Un dictionnaire ``dict`` est une collection ordonnée (à partide python 3.7) de paires key-value (clé-valeur). Les clés sont uniques.
+
+Un ensemble ``set`` est une collection non-ordonnée, non indexée et qui ne contient que des éléments uniques (pas de doublons).
+
+Une chaîne ``str`` est une séquence immuable (qui ne change pas) de caractères qui peut être parcourue comme une liste. (Chaque élément est un caractère.)
+
+``` python
+
+list_ex = [1, 2, 2, 3] # doublon possible
+
+dict_ex = {"nom": "Alice", "âge": 25} # key - value pair
+
+set_ex = {1, 2, 3} # pas de doublon
+
+str_ex = "Hello world"
+
+```
+
+---
+
+- **Quelle est la différence entre une fonction et une méthode ?**
+
+Une méthode est une fonction liée à un objet (comme une liste, une chaîne, etc.)  qui est appelée avec la syntaxe ``objet.methode()``, tandis qu'une fonction est un bloc de code réutilisable qui accepte des arguments. Cette dernière peut être appelée seule : ***Exemple : print(), len(), ou une fonction créée avec def.***
+
+``` python
+
+def func_example ():
+    print("coucou")
+
+func_example() # appel de la fonction
+
+my_method_text = "example"
+print(my_method_text.upper()) # appel de la méthode
+
+```
+
+---
+
+- **Que signifie la portée d’une variable (``global`` vs ``local``) ?**
+
+Une variable ``global`` est déclarée en dehors d'une fonction et est disponible dans toutes les fonctions et méthodes du fichier dans lequel elle a été déclarée. Elle ne peut être modifiée dans une fonction que si on utilise le mot-clé ``global``.
+
+Une variable ``local`` est disponible, cloisonnée et exploitable uniquement dans la fonction dans laquelle elle a été déclarée. (Cela vaut pour les variables en tant que paramètre de la fonction et celles déclarées dans la fonction.)
+
+``` python
+
+compteur = 0  # variable globale
+
+def incrementer():
+    global compteur  # on indique qu'on veut modifier la variable globale grâce à "global"
+    compteur += 1
+    local_message = "Compteur incrémenté"  # variable locale
+    print(local_message)
+
+incrementer()
+print("Valeur globale de compteur :", compteur)
 
 
-- Quelle est la différence entre une fonction et une méthode ?
 
+x = "global"
 
-- Que signifie la portée d’une variable (``global`` vs ``local``) ?
+def ma_fonction():
+    x = "local"
+    print("Dans la fonction :", x) # Dans la fonction : local
 
+ma_fonction()
+print("En dehors de la fonction :", x) # En dehors de la fonction : global
 
-- Qu'est-ce qu'une fonction lambda ?
+```
 
+---
 
-- Qu’est-ce qu’une classe et un objet ?
+- **Qu'est-ce qu'une fonction lambda ?**
 
+Une fonction ``lambda`` est une fonction anonyme, c'est-à-dire qui n'est pas nommée. Elle s’écrit en une seule ligne, et est utile pour des opérations simples et courtes.
 
-- À quoi sert ``__init__()`` ?
+***Syntaxe : lambda arguments: expression***
 
+``` python
 
-- Quelle est la différence entre une méthode de classe, de classe statique, et une méthode d’instance ?
+# Avec def
+def addition(x, y):
+    return x + y
 
+# Avec lambda
+addition = lambda x, y: x + y # Fonction lambda qui additionne 2 nombres
 
-- Que signifie l’héritage en Python ?
+print(addition(2, 3))  # Affiche 5
 
+```
 
-- Comment gérer les exceptions en Python ?
+---
 
+- **Qu’est-ce qu’une classe et un objet ?**
 
-- Quelle est la différence entre ``try/except`` et ``try/except/finally`` ?
+// TODO
 
+---
+
+- **À quoi sert ``__init__()`` ?**
+
+// TODO
+
+---
+
+- **Quelle est la différence entre une méthode de classe, de classe statique, et une méthode d’instance ?**
+
+// TODO
+
+---
+
+- **Que signifie l’héritage en Python ?**
+
+// TODO
+
+---
+
+- **Comment gérer les exceptions en Python ?**
+
+// TODO
+
+---
+
+- **Quelle est la différence entre ``try/except`` et ``try/except/finally`` ?**
+
+// TODO
+
+---
 
 - Les dictionnaires sont-ils ordonnés en Python 3.9+ ?
+
+// TODO
