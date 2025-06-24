@@ -2,11 +2,11 @@
 
 - **Quelle est la différence entre une liste et un tuple ?**
 
-Une liste est une collection ordonnée et modifiable (mutable) d’éléments de tout type. Elle est délimitée par des crochets [].
+Une liste est une collection ordonnée et modifiable (mutable) d’éléments de tout type. Elle est délimitée par des crochets ``[]``.
 
 ***Exemple : ma_liste = ['orange', 2, 'banana', 30.1 , 'kiwi']***
 
-Un tuple est une collection ordonnée mais non modifiable (immutable). Il est délimité par des parenthèses ().
+Un tuple est une collection ordonnée mais non modifiable (immutable). Il est délimité par des parenthèses ``()``.
 
 ***Exemple : mon_tuple = ('orange', 2, 'banana', 30.1 , 'kiwi')***
 
@@ -127,9 +127,9 @@ print(chaine) # sérétcarac ed eniahc aM
 - **Comment inverser une liste en Python ?**
 
 ``` python
-# Avec [::1]
+# Avec [::-1]
 liste = [1, 2, 3, 4, 5]
-liste_inversee = liste[::1]
+liste_inversee = liste[::-1]
 
 print(liste_inversee) # [5, 4, 3, 2, 1]
 
@@ -189,7 +189,7 @@ print('Out of loop')
 
 ```
 
-A noter que ``contine`` permet de sauter le reste du code dans la boucle et de passer à l’itération suivante.
+A noter que ``continue`` permet de sauter le reste du code dans la boucle et de passer à l’itération suivante.
 
 ``` python
 
@@ -250,7 +250,7 @@ print(resultat)  # [10, 40, 90, 160, 250]
 
 - **Qu'est-ce que ``zip()`` ?**
   
-``zip()`` est une fonction intégrée qui permet de regrouper plusieurs listes ou itérables élément par élément. Elle associeles éléments en paires (ou tuples), selon leur position.
+``zip()`` est une fonction intégrée qui permet de regrouper plusieurs listes ou itérables élément par élément. Elle associe les éléments en paires (ou tuples), selon leur position.
 
 ``` python
 
@@ -291,7 +291,7 @@ print(prenoms)        # ['Enzo', 'Alice', 'Charlie', 'Bob'] — inchangé
 
 - **Comment supprimer les doublons d’une liste tout en conservant l’ordre ?**
 
-Les dictionnaires conservent l’ordre d’insertion. Avec ``dict.fromkeys(ma_liste)``, on crée un dictionnaire où les clés sont les éléments de la liste ```ma_liste``. Comme les clés d’un dict sont uniques, les doublons sont automatiquement éliminés. Transformer ce dictionnaire en liste avec ``list()`` donne la liste des clés dans l’ordre d’apparition.
+Les dictionnaires conservent l’ordre d’insertion. Avec ``dict.fromkeys(ma_liste)``, on crée un dictionnaire où les clés sont les éléments de la liste ```ma_liste```. Comme les clés d’un dict sont uniques, les doublons sont automatiquement éliminés. Transformer ce dictionnaire en liste avec ``list()`` donne la liste des clés dans l’ordre d’apparition.
 
 ``` python
 
@@ -307,7 +307,7 @@ print(result) # ['James', 'Bob', 'Mark', 'Kate', 'Sarah']
 
 Une liste ``list`` est une collection ordonnée et modifiable qui autorise les éléments en double.
 
-Un dictionnaire ``dict`` est une collection ordonnée (à partide python 3.7) de paires key-value (clé-valeur). Les clés sont uniques.
+Un dictionnaire ``dict`` est une collection ordonnée (à partir de python 3.7) de paires key-value (clé-valeur). Les clés sont uniques.
 
 Un ensemble ``set`` est une collection non-ordonnée, non indexée et qui ne contient que des éléments uniques (pas de doublons).
 
@@ -402,40 +402,199 @@ print(addition(2, 3))  # Affiche 5
 
 - **Qu’est-ce qu’une classe et un objet ?**
 
-// TODO
+Python est un langage en POO (Programmation Orientée Objet).
 
----
+Une classe est un modèle pour créer un objet. Elle définit des attributs (données) et des méthodes.
 
-- **À quoi sert ``__init__()`` ?**
+Un objet est une instance de classe qui vient utiliser, avec ses propres valeurs, les proprités (attributs) et les actions / comportements (méthodes) mises à disposition par la classe.
 
-// TODO
+``` python
 
----
+# Classe
+class Animal:
+    def __init__(self, animal_type, nom, age, son): # __init__ -> constructeur
+        self.animal_type = animal_type  # attribut de classe
+        self.nom = nom                  # attribut de classe
+        self.age = age                  # attribut de classe
+        self.son = son                  # attribut de classe
+    
+    def presentation(self): # méthode
+        print(f"Voici mon {self.animal_type} {self.nom} qui a {self.age} ans.")
+    
+    def bruit(self): # self fait référence à l'instance actuelle
+        print(self.son)
 
-- **Quelle est la différence entre une méthode de classe, de classe statique, et une méthode d’instance ?**
+# Création d'objet
+mon_objet_chat = Animal("chat", "Isis", 6, "Miaou !")
+mon_objet_chien = Animal("chien", "Pepsi", 5, "Wouaf !")
 
-// TODO
+# Utilisation des méthodes de la classe Animal()
+mon_objet_chat.presentation() # Voici mon chat Isis qui a 6 ans.
+mon_objet_chat.bruit() # Miaou !
+
+mon_objet_chien.presentation() # Voici mon chien Pepsi qui a 5 ans.
+mon_objet_chien.bruit() # Wouaf !
+
+```
 
 ---
 
 - **Que signifie l’héritage en Python ?**
 
-// TODO
+L'héritage en Python permet à une classe enfant d'hériter des propriétés et méthodes d'une classe parent. C'est utilisé en POO (Programmation Orientée Objet).
+
+``` python
+
+# classe parent
+class Animal:
+    def __init__(self, nom, age):
+        self.nom = nom
+        self.age = age
+
+# classe enfant Chat qui hérite des propriétés et méthodes de la classe parent Animal
+class Chat(Animal): 
+    def __init__(self, nom, age, type):
+        super().__init__(nom, age) # appel du constructeur de la classe parent
+        self.type = type
+    
+    def miauler(self):
+        print("Miaou !")
+
+animal1 = Animal("Gizmo", 3)
+chat1 = Chat("Bubble", 5, "chat") # on passe "nom", "age" et "type" à l'instance Chat
+chat1.miauler()   # Miaou !
+print(chat1.nom)  # Bubble
+print(chat1.age)  # 5
+print(chat1.type) # chat
+
+```
+
+---
+
+- **À quoi sert ``__init__()`` ?**
+
+``__init__()`` est une méthode constructeur appelée automatiquement à la création d'un objet. Elle sert à assigner des valeurs aux propriétés de l'objet qui sera créer à partir de la classe.
+
+``` python
+
+class Personne:
+    def __init__(self, nom, age):
+        self.nom = nom   # attribut d'instance
+        self.age = age   # attribut d'instance
+
+personne1 = Personne("Thomas", 30)
+print(personne1.nom) # Thomas
+print(personne1.age) # 30
+
+```
+
+---
+
+- **Quelle commande utiliser pour lire un fichier Python ?**
+
+On utilise la commande ``python nom_du_fichier.py`` pour lire un fichier Python dans le terminal.
+
+---
+
+- **Quelle est la différence entre une méthode de classe,  statique, et d’instance ?**
+
+Une méthode de classe est liée à la classe elle-même. Elle utilise ``@classmethod`` et reçoit ``cls`` en premier argument. On l'utilise lorsqu'on veut travailler avec la classe elle-même, non un objet spécifique. Ex : modification des variables partagées par toutes les instances (objets) de la classe.
+
+Une méthode d'instance est liée à un objet instancié de la classe. Elle utilise ``self`` pour accéder aux attributs de l'objet. On l'utilise lorsqu'on a besoin d'accéder ou de modifier les données propres à une objet (instance). Ex : modification du nom d'une personne ou le solde d'un compte bancaire.
+
+Une méthode statique n'accède si à l'instance ``self`` ni à la classe ``cls``. Elle est indépendante du contexte de classe et s’utilise avec ``@staticmethod``. On l'utilise lorsqu'on a besoin d'une fonction utilitaire liée à la classe, mais qui ne dépends ni de la classe ni de l'objet.
+
+``` python
+
+class Exemple:
+    nom_de_la_classe = "Exemple"
+
+    def __init__(self, nom):
+        self.nom = nom
+    
+    def methode_instance(self):
+        print(f"Je suis {self.nom}") # utilise self
+
+    @classmethod
+    def methode_de_classe(cls):
+        print(f"Nom de la class : {cls.nom_de_la_classe}") # utilise cls
+    
+    @staticmethod
+    def methode_statique():
+        print("Je suis une méthode statique") # ne dépend ni de self ni de cls
+    
+obj = Exemple("Objet 1")
+obj.methode_instance() # Je suis Objet 1
+Exemple.methode_de_classe() # Nom de la classe : Exemple
+Exemple.methode_statique() # Je suis une méthode statique -> juste une fonction.
+
+
+class Voiture:
+    nb_voitures = 0
+
+    def __init__(self):
+        Voiture.nb_voitures += 1
+
+    @classmethod
+    def combien_de_voitures(cls):
+        print(f"Il y a {cls.nb_voitures} voitures")
+
+Voiture.combien_de_voitures()
+
+```
 
 ---
 
 - **Comment gérer les exceptions en Python ?**
 
-// TODO
+Les exceptions sont gérées avec un bloc ``try / except``. Le block ``try`` permet de tester si un bloc de code a des erreurs. Si c'est le cas et qu'une erreur survient, le bloc ``except`` permet de capturer l'erreur et d'executer une code de gestion.
+
+On est sur la même logique qu'un' ``try / catch`` en Javascript.
+
+``` python
+try:
+    print(x) # ici x n'est pas défini, ce qui va donc générer une erreur
+except NameError:
+    print("Variable non définie")
+except Exception as error
+    print(f"Une erreur est survenue : {error}")
+
+```
 
 ---
 
 - **Quelle est la différence entre ``try/except`` et ``try/except/finally`` ?**
 
-// TODO
+Un bloc ``try/except`` permet de gérer une erreur survenue dans un bloc de code. 
+
+Un bloc ``try/except/finally`` ajoute un bloc ``finally`` qui permet de toujours exécuter le bloc de code, qu'il y ait eu une erreur ou non.
+
+A noter qu'un bloc ``else`` est aussi possible. Il permet d'executer du code si aucune erreur n'est survenue.
+
+``` python
+def lire_fichier(nom_fichier):
+    # on essaie d'ouvrier en lecture le fichier et de le lire
+    try:
+        fichier = open(nom_fichier, 'r')
+        contenu = fichier.read()
+    # Si le fichier n’existe pas, on affiche un message d’erreur
+    except FileNotFoundError:
+        print("Erreur : fichier non trouvé.")
+    # Sinon, on affiche son contenu
+    else:
+        print("contenu du fichier :")
+        print(contenu)
+    # Enfin, on ferme le fichier s'il a été ouvert (même si une erreur est survenue)
+    finally:
+        try:
+            fichier.close()
+            print("Fichier fermé.")
+        # le fichier n'a jamais été ouvert
+        except UnboundLocalError:
+            pass
+
+lire_fichier("exemple.txt")
+
+```
 
 ---
-
-- Les dictionnaires sont-ils ordonnés en Python 3.9+ ?
-
-// TODO
