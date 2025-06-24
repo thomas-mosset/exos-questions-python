@@ -598,3 +598,262 @@ lire_fichier("exemple.txt")
 ```
 
 ---
+
+- **Comment vérifier le type d’une variable ?**
+
+On vérifie le type d'une variable à l'aide de ``type()``.
+
+```python
+
+x_int = 5
+x_float = 20.5
+x_str = "Hello"
+x_list = ["apple", "banana", "cherry"]
+x_tuple = ("apple", "banana", "cherry")
+x_dict = {"name" : "Jane", "lastname" : "Doe"}
+x_set = {"apple", "banana", "cherry"}
+x_bool = True
+
+print(type(x_int)) # int
+print(type(x_float)) # float
+print(type(x_str)) # str
+print(type(x_list)) # list
+print(type(x_tuple)) # tuple
+print(type(x_dict)) # dict
+print(type(x_set)) # set
+print(type(x_bool)) # bool
+
+```
+
+---
+
+- **Comment convertir ou créer une variable d'un certain type ?**
+
+On peut utiliser des constructeurs :
+
+```python
+
+# création d'un certain type
+x_int = int(5)
+x_float = float(20.5)
+x_str = str("Hello")
+x_bool = bool(5)
+x_dict = dict(name="Jane", lastname="Doe")
+
+# pour les list, tuples et set, on lui passe un itérable (n'importe lequel) pour créer la variable d'un de ces types.
+x_list = list(("apple", "banana", "cherry"))
+x_tuple = tuple(("apple", "banana", "cherry"))
+x_set = set(("apple", "banana", "cherry"))
+
+# conversion d'un type vers un autre
+x_list_convertie = list(("apple", "banana", "cherry"))  # tuple () vers list
+x_tuple_converti = tuple(["apple", "banana", "cherry"])  # list [] vers tuple
+
+```
+
+---
+
+- **Quelle est la différence entre ``break`` et ``return`` ?**
+
+``break`` interrompt une boucle (``for`` ou ``while``) et continue l'éxécution du code après la boucle. Tandis que ``return`` termine l'éxecution d'une fonction et renvoie quelque chose (une valeur ou rien -> ``null``) à l'endroit où la fonction a été appelée.
+
+```python
+
+# break
+for i in range(10):
+    print(i)
+    break # stoppe la boucle dès la première itération
+
+print("Fin de la boucle")
+
+x = 0
+
+while x < 10:
+    x += 1
+    break # stoppe la boucle après la première itération
+
+# return
+def my_func():
+    y = 10
+
+    return y # renvoie la valeur et termine la fonction
+
+result = my_func()
+print(result)  # affiche 10
+
+```
+
+---
+
+- **Comment documenter une fonction en Python ?**
+
+Il est recommandé de documenter ses fonctions en Python. Pour le faire,  on lui donne une chaîne de documentation ``doc string``.
+
+```python
+
+def congratulations():
+    """
+    Affiche un message
+    """
+    print("Félicitations !")
+
+congratulations()
+
+def addition(x, y):
+    """
+    Additionne la somme de x et y
+
+    :param x: valeur de x
+    :param y: valeur de y
+    :return: somme de x et y
+    """
+    resultat = x + y
+    return resultat
+
+nb1 = 100
+nb2 = 300
+
+res = addition(nb1, nb2)
+print(res) # affiche 400
+
+
+def calculerMoyenne(note1=10, note2=15, note3=18):
+    """
+    Calcule la moyenne de note1, note2 et note3
+
+    :param note1: valeur de note1
+    :param note2: valeur de note2
+    :param note3: valeur de note3
+
+    :return: moyenne de note1, note2 et note3
+    """
+
+    resultat = (note1 + note2 + note3) / 3
+    return resultat
+
+```
+
+---
+
+- **Qu'est-ce qu'une fonction récursive ?**
+
+Une fonction récursive est une fonction qui s'appelle elle-même directement ou indirectement. C'est utile lorsqu'il faut résoudre des problèmesqui peuvent être divisés en sous-problèmes identiques, comme le calcul de la factorielle ou la suite de Fibonacci.
+
+```python
+
+def somme_recursive(liste):
+    """
+    Calcule la somme des éléments d'une liste de façon récursive
+
+    :param list: liste d'entiers
+    :return: somme des éléments
+    """
+
+    if not liste: # cas de base : liste vide, la somme est de 0
+        return 0
+    else:
+        return liste[0] + somme_recursive(liste[1:]) # somme du premier élément + somme du reste de la liste
+
+# exemple d'utilisation
+ma_liste = [1, 2, 3, 4, 5]
+print(somme_recursive(ma_liste))  # affiche 15
+
+```
+
+---
+
+- **Quelle est la différence entre les modes 'r', 'w', 'a', 'rb', 'x' ?**
+
+``r`` = read (ouverture en lecture seule) d'un fichier - renvoi une erreur ``FileNotFoundError`` si le fichier n'existe pas.
+
+``w`` = write (ouverture en écriture) d'un fichier - création du fichier si celui-ci n'existe pas, sinon écrase ce qu'il y a dessus.
+
+``a`` = append (ouverture en mode ajout) d'un fichier - création du fichier si celui-ci n'existe pas.
+
+``x`` = create (création) d'un fichier - renvoi une erreur ``FileExistsError`` si le fichier existe déjà.
+
+``rb`` = read binary (ouverture en lecture seule en mode binaire -> utile pour les fichiers non-textes comme les images, l'audio, etc.) - renvoi une erreur si le fichier n'existe pas.
+
+```python
+
+# Mode 'r' : lecture seule (texte)
+try:
+    with open('fichier.txt', 'r') as f:
+        contenu = f.read()
+        print(contenu)
+except FileNotFoundError:
+    print("Le fichier n'existe pas.")
+
+# Mode 'w' : écriture (écrase le fichier s'il existe, sinon crée un nouveau)
+with open('fichier.txt', 'w') as f:
+    f.write("Ceci est un nouveau contenu.\n")
+
+# Mode 'a' : ajout (ajoute à la fin du fichier, crée s'il n'existe pas)
+with open('fichier.txt', 'a') as f:
+    f.write("Ligne ajoutée à la fin.\n")
+
+# Mode 'x' : création (crée un fichier, erreur si le fichier existe)
+try:
+    with open('nouveau_fichier.txt', 'x') as f:
+        f.write("Contenu du fichier créé.\n")
+except FileExistsError:
+    print("Le fichier existe déjà.")
+
+# Mode 'rb' : lecture en binaire (utile pour fichiers non-texte)
+try:
+    with open('image.png', 'rb') as f:
+        contenu_binaire = f.read()
+        print(f"Nombre d'octets lus : {len(contenu_binaire)}")
+except FileNotFoundError:
+    print("Le fichier binaire n'existe pas.")
+
+```
+
+---
+
+- **À quoi sert ``yield`` ?**
+
+``yield`` est un mot-clé utilisé dans une fonction permettant de créer un générateur, qui produit des valeurs une par une, à la demande, sans tout stocker en mémoire.
+
+Contrairement à ``return`` qui termine une fonction en renvoyant une valeur, ``yield`` suspend l’exécution de la fonction et la reprend là où elle s’était arrêtée lors du prochain appel. Cela permet d’itérer sur une séquence de valeurs générées dynamiquement, ce qui est très efficace pour traiter de grandes quantités de données.
+
+``` python
+
+def lire_fichier_ligne_par_ligne(fichier):
+    with open(fichier, 'r') as f:
+        for ligne in f:
+            yield ligne.strip()  # retourne une ligne à la fois, sans charger tout le fichier
+
+# Utilisation du générateur
+for ligne in lire_fichier_ligne_par_ligne("gros_fichier.txt"):
+    print(ligne)
+    # on peut arrêter la lecture quand on veut, sans lire tout le fichier
+
+```
+
+---
+
+- **Qu’est-ce qu’une compréhension de liste (``list comprehension``) ?**
+
+TODO
+
+---
+
+- **Comment fonctionne ``with`` en Python ?**
+
+TODO
+
+---
+
+- **Qu’est-ce que ``__str__()`` et ``__repr__()`` ?**
+
+TODO
+
+---
+
+- **Comment fonctionne l'importation de modules ?**
+
+TODO
+
+---
+
