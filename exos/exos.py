@@ -78,7 +78,10 @@ mini_calculatrice(2, 4, "fail")
 # --------------------------------
 # Affiche les nombres de 1 à 100 avec une boucle for
 def affiche_1_a_100():
-    pass  # À compléter
+    for i in range(1, 101):
+        print(i)
+
+affiche_1_a_100()
 
 # Affiche uniquement les multiples de 3 entre 1 et 100
 def affiche_multiples_de_3():
