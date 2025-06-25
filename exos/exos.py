@@ -111,12 +111,21 @@ inverse_chaine("Hello World")
 # Défi : Affiche uniquement les nombres pairs entre 1 et 20
 # 1. Avec une boucle for
 def pairs_for():
-    pass  # À compléter
+    for i in range(1, 21):
+        if i % 2 == 0:
+            print(i)
+
+pairs_for()
 
 # 2. Avec une boucle while
 def pairs_while():
-    pass  # À compléter
-
+    i = 1
+    
+    while i < 21:
+        if i % 2 == 0:
+            print(i)
+        i += 1
+pairs_while()
 
 # 4. Fonctions
 # --------------------------------
