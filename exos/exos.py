@@ -35,7 +35,13 @@ print(var_str_to_list, type(var_str_to_list))
 # --------------------------------
 # Écris une fonction qui vérifie si un nombre est pair ou impair.
 def est_pair(n):
-    pass  # À compléter
+    if n % 2 == 0:
+        print(f"{n} est pair.")
+    else:
+        print(f"{n} est impair.")
+
+est_pair(10)
+est_pair(21)
 
 # Crée une mini-calculatrice simple (addition, soustraction, multiplication, division)
 def mini_calculatrice(a, b, operateur):
