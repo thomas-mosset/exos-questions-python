@@ -45,8 +45,34 @@ est_pair(21)
 
 # Crée une mini-calculatrice simple (addition, soustraction, multiplication, division)
 def mini_calculatrice(a, b, operateur):
-    pass  # À compléter
+    resultat = None
+    operateur_ok = True
+            
+    if operateur == "+":
+        resultat = a + b
+    elif operateur == "-":
+        resultat = a - b
+    elif operateur == "/":
+        if b != 0:
+            resultat = a / b
+        else:
+            print("Erreur : division par zéro.")
+            return
+    elif operateur == "*":
+        resultat = a * b
+    else:
+        operateur_ok = False
+        print("Opérateur invalide. Utilisez uniquement '+', '-', '*', ou '/'.")
+    
+    if operateur_ok == True:
+        print(f"Le résultat de {a} {operateur} {b} est : {resultat}")
 
+
+mini_calculatrice(2, 4, "+")
+mini_calculatrice(12, 4, "-")
+mini_calculatrice(8, 4, "/")
+mini_calculatrice(58, 4, "*")
+mini_calculatrice(2, 4, "fail")
 
 # 3. Boucles et itérations
 # --------------------------------
