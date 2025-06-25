@@ -93,7 +93,20 @@ affiche_multiples_de_3()
 
 # Inverse une chaîne de caractères avec une boucle
 def inverse_chaine(s):
-    pass  # À compléter
+    chaine_liste = list(s) # conversion en liste de la chaîne de caractères
+    chaine_liste_inversee = [] # initialisation vide d'un tableau
+    
+    # boucle sur les caractères
+    for caractere in reversed(chaine_liste):
+        # ajout de chaque caractère
+        chaine_liste_inversee.append(caractere)
+    
+    # conversion en chaîne de caractères
+    chaine_inversee = "".join(chaine_liste_inversee)
+    # affiche la chaine inversée
+    print(chaine_inversee)
+
+inverse_chaine("Hello World")
 
 # Défi : Affiche uniquement les nombres pairs entre 1 et 20
 # 1. Avec une boucle for
