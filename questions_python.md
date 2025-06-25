@@ -453,19 +453,19 @@ class Animal:
 
 # classe enfant Chat qui hérite des propriétés et méthodes de la classe parent Animal
 class Chat(Animal): 
-    def __init__(self, nom, age, type):
+    def __init__(self, nom, age, animal_type):
         super().__init__(nom, age) # appel du constructeur de la classe parent
-        self.type = type
+        self.animal_type = animal_type
     
     def miauler(self):
         print("Miaou !")
 
 animal1 = Animal("Gizmo", 3)
-chat1 = Chat("Bubble", 5, "chat") # on passe "nom", "age" et "type" à l'instance Chat
+chat1 = Chat("Bubble", 5, "chat") # on passe "nom", "age" et "animal_type" à l'instance Chat
 chat1.miauler()   # Miaou !
 print(chat1.nom)  # Bubble
 print(chat1.age)  # 5
-print(chat1.type) # chat
+print(chat1.animal_type) # chat
 
 ```
 
@@ -473,7 +473,7 @@ print(chat1.type) # chat
 
 - **À quoi sert ``__init__()`` ?**
 
-``__init__()`` est une méthode constructeur appelée automatiquement à la création d'un objet. Elle sert à assigner des valeurs aux propriétés de l'objet qui sera créer à partir de la classe.
+``__init__()`` est une méthode constructeur appelée automatiquement à la création d'un objet. Elle sert à assigner des valeurs aux propriétés de l'objet qui sera créé à partir de la classe.
 
 ``` python
 
@@ -494,9 +494,13 @@ print(personne1.age) # 30
 
 On utilise la commande ``python nom_du_fichier.py`` pour lire un fichier Python dans le terminal.
 
+Bonus : On peut également utiliser le bouton ***"play"*** en haut à droite de l'éditeur VSCode lorsqu'on se trouve sur un fichier ``.py``.
+
+![Bouton play de l'éditeur VSCode](img/run-python-file-in-terminal-butt.jpg "Bouton play de l'éditeur VSCode")
+
 ---
 
-- **Quelle est la différence entre une méthode de classe,  statique, et d’instance ?**
+- **Quelle est la différence entre une méthode de classe, méthode statique, et méthode d’instance ?**
 
 Une méthode de classe est liée à la classe elle-même. Elle utilise ``@classmethod`` et reçoit ``cls`` en premier argument. On l'utilise lorsqu'on veut travailler avec la classe elle-même, non un objet spécifique. Ex : modification des variables partagées par toutes les instances (objets) de la classe.
 
@@ -549,7 +553,7 @@ Voiture.combien_de_voitures()
 
 Les exceptions sont gérées avec un bloc ``try / except``. Le block ``try`` permet de tester si un bloc de code a des erreurs. Si c'est le cas et qu'une erreur survient, le bloc ``except`` permet de capturer l'erreur et d'executer une code de gestion.
 
-On est sur la même logique qu'un' ``try / catch`` en Javascript.
+On est sur la même logique qu'un ``try / catch`` en Javascript.
 
 ``` python
 try:
@@ -573,7 +577,7 @@ A noter qu'un bloc ``else`` est aussi possible. Il permet d'executer du code si 
 
 ``` python
 def lire_fichier(nom_fichier):
-    # on essaie d'ouvrier en lecture le fichier et de le lire
+    # on essaie d'ouvrir en lecture le fichier et de le lire
     try:
         fichier = open(nom_fichier, 'r')
         contenu = fichier.read()
@@ -737,7 +741,7 @@ def calculerMoyenne(note1=10, note2=15, note3=18):
 
 - **Qu'est-ce qu'une fonction récursive ?**
 
-Une fonction récursive est une fonction qui s'appelle elle-même directement ou indirectement. C'est utile lorsqu'il faut résoudre des problèmesqui peuvent être divisés en sous-problèmes identiques, comme le calcul de la factorielle ou la suite de Fibonacci.
+Une fonction récursive est une fonction qui s'appelle elle-même directement ou indirectement. C'est utile lorsqu'il faut résoudre des problèmes qui peuvent être divisés en sous-problèmes identiques, comme le calcul de la factorielle ou la suite de Fibonacci.
 
 ```python
 
@@ -764,15 +768,15 @@ print(somme_recursive(ma_liste))  # affiche 15
 
 - **Quelle est la différence entre les modes 'r', 'w', 'a', 'rb', 'x' ?**
 
-``r`` = read (ouverture en lecture seule) d'un fichier - renvoi une erreur ``FileNotFoundError`` si le fichier n'existe pas.
+``r`` = read (ouverture en lecture seule) d'un fichier - renvoie une erreur ``FileNotFoundError`` si le fichier n'existe pas.
 
 ``w`` = write (ouverture en écriture) d'un fichier - création du fichier si celui-ci n'existe pas, sinon écrase ce qu'il y a dessus.
 
 ``a`` = append (ouverture en mode ajout) d'un fichier - création du fichier si celui-ci n'existe pas.
 
-``x`` = create (création) d'un fichier - renvoi une erreur ``FileExistsError`` si le fichier existe déjà.
+``x`` = create (création) d'un fichier - renvoie une erreur ``FileExistsError`` si le fichier existe déjà.
 
-``rb`` = read binary (ouverture en lecture seule en mode binaire -> utile pour les fichiers non-textes comme les images, l'audio, etc.) - renvoi une erreur si le fichier n'existe pas.
+``rb`` = read binary (ouverture en lecture seule en mode binaire -> utile pour les fichiers non-textes comme les images, l'audio, etc.) - renvoie une erreur si le fichier n'existe pas.
 
 ```python
 
@@ -835,25 +839,120 @@ for ligne in lire_fichier_ligne_par_ligne("gros_fichier.txt"):
 
 - **Qu’est-ce qu’une compréhension de liste (``list comprehension``) ?**
 
-TODO
+Une ``list comprehension`` permet une syntaxe raccourcie lorsqu'on souhaite créer une nouvelle liste à partir d'une autre pré-existante.
+
+``` python
+
+# Je veux une nouvelle liste, contenant uniquement les fruits avec la lettre « a » dans le nom
+
+# Avec les listes "classiques"
+fruits = ["pomme", "banane", "abricot", "kiwi", "mangue"]
+nouvelle_liste = []
+
+for x in fruits:
+  if "a" in x:
+    nouvelle_liste.append(x)
+
+print(nouvelle_liste)
+
+
+# Avec une listes "compréhensive"
+fruits = ["pomme", "banane", "abricot", "kiwi", "mangue"]
+
+nouvelle_liste = [x for x in fruits if "a" in x]
+
+print(nouvelle_liste)
+
+```
 
 ---
 
 - **Comment fonctionne ``with`` en Python ?**
 
-TODO
+``with`` est une instruction Python qui permet de gérer les ressources telles que les fichiers, les connexions réseau ou tout objet supportant le protocole de gestion de contexte (implémentant les méthodes ``__enter__`` et ``__exit__``). Elle garantit que les opérations d'initialisation et de finalisation soient toujours effectuées de manière cohérente et fiable, même si une erreur survient.
+
+Par exemple, lors de l'ouverture d'un fichier, il est important de le fermer correctement après avoir terminé de l'utiliser.
+
+Avec l'instruction with, vous n'avez pas besoin de vous soucier de fermer le fichier manuellement :
+
+``` python
+
+# Avec with
+with open("mon_fichier.txt", "r") as fichier:
+    contenu = fichier.read()
+
+# Sans with
+fichier = open("mon_fichier.txt", "r")
+try:
+    contenu = fichier.read()
+except FileNotFoundError:
+    print("Le fichier n'existe pas.")
+finally:
+    fichier.close()
+
+```
 
 ---
 
 - **Qu’est-ce que ``__str__()`` et ``__repr__()`` ?**
 
-TODO
+Ce sont 2 méthodes spéciales en Python utilisées pour définir comment un objet est représenté sous forme de chaîne de caractères.
+
+``__str__()`` : définit la représentation "lisible" de l'objet, destinée à être compréhensible par un utilisateur final (par exemple lors d’un ``print()``).
+
+``__repr__()`` : définit une représentation plus technique et précise de l'objet, destinée principalement au développeur, souvent utilisable pour recréer l'objet.
+
+```python
+class Personne:
+    def __init__(self, nom, age):
+        self.nom = nom
+        self.age = age
+
+    def __str__(self):
+        return f"{self.nom}, {self.age} ans"  # lisible et simple
+
+    def __repr__(self):
+        return f"Personne(nom={repr(self.nom)}, age={repr(self.age)})"  # plus détaillé et précis
+
+p = Personne("Alice", 30)
+
+print(p)       # Affiche : Alice, 30 ans
+print(repr(p)) # Affiche : Personne(nom='Alice', age=30)
+
+```
 
 ---
 
-- **Comment fonctionne l'importation de modules ?**
+- **Qu'est-ce qu'un module ? Comment fonctionne l'importation de modules ?**
 
-TODO
+Un module est un fichier Python ``.py`` contenant du code (fonctions, classes, variables, etc.). On peut importer ce module ou des éléments précis qu'il contient comme ceci :
+
+```python
+
+# Importer tout le module (accès via nom_du_module.nom_de_fonction)
+import math
+print(math.sqrt(9))
+
+# Importer uniquement des éléments spécifiques
+from math import sqrt, pi
+print(sqrt(16))
+print(pi)
+
+# Importer tous les éléments (déconseillé car peu explicite et peut causer des conflits et/ou rendre le code moins lisible)
+from math import *
+
+```
 
 ---
 
+- **Quelles sont les extensions utiles de VSCode pour développer avec Python ?**
+
+``Python`` (par Microsoft) : Fournit le support de base pour Python (exécution, IntelliSense, linting, débogage, etc.).
+
+``Pylance`` : Moteur d'analyse rapide et puissant pour l'autocomplétion, la vérification de types, et la navigation dans le code.
+
+``Python Debugger`` : Pour déboguer facilement des scripts Python.
+
+``Python Docstring Generator`` : Génère des ``docstrings`` pour les fonctions Python.
+
+``Python Extension Pack`` : Un pack qui installe d’un coup plusieurs extensions utiles pour Python. (Ex: ``Python``, ``Python Docstring Generator``, ``Python Indent``, ``Django``, etc.)
