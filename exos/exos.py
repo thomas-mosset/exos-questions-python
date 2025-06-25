@@ -85,7 +85,11 @@ affiche_1_a_100()
 
 # Affiche uniquement les multiples de 3 entre 1 et 100
 def affiche_multiples_de_3():
-    pass  # À compléter
+    for i in range(1, 101):
+        if i % 3 == 0:
+            print(i)
+
+affiche_multiples_de_3()
 
 # Inverse une chaîne de caractères avec une boucle
 def inverse_chaine(s):
