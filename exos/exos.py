@@ -192,14 +192,20 @@ print(compte_lettres("Hello World"))
 
 # Écris une fonction qui retourne la clé avec la plus grande valeur dans un dictionnaire
 def cle_max_valeur(dico):
-    pass  # À compléter
-
+    return max(dico, key=dico.get)
+ 
+print(cle_max_valeur({"a": 12, "b": 88, "c": 42}))
 
 # 6. Compréhension de liste et fonctions lambda
 # --------------------------------
 # Recrée la liste [0, 2, 4, 6, 8] avec une compréhension de liste
-def liste_pairs():
-    pass  # À compléter
+def liste_pairs(liste):
+    # newlist = [expression for item in iterable if condition == True]
+    nouvelle_liste = [n for n in liste if n % 2 == 0]
+    
+    return nouvelle_liste
+
+print(liste_pairs([0, 1, 2, 3, 4, 5, 6, 7, 8]))
 
 # Utilise map() et filter() avec des fonctions lambda (exemple simple)
 def map_filter_exemple():
