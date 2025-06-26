@@ -569,7 +569,7 @@ except Exception as error
 
 - **Quelle est la différence entre ``try/except`` et ``try/except/finally`` ?**
 
-Un bloc ``try/except`` permet de gérer une erreur survenue dans un bloc de code. 
+Un bloc ``try/except`` permet de gérer une erreur survenue dans un bloc de code.
 
 Un bloc ``try/except/finally`` ajoute un bloc ``finally`` qui permet de toujours exécuter le bloc de code, qu'il y ait eu une erreur ou non.
 

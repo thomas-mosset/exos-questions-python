@@ -125,32 +125,70 @@ def pairs_while():
         if i % 2 == 0:
             print(i)
         i += 1
+
 pairs_while()
 
 # 4. Fonctions
 # --------------------------------
 # Crée une fonction factorielle récursive
 def factorielle_recursive(n):
-    pass  # À compléter
+    if n == 0:
+        return 1
+    else:
+        return n * factorielle_recursive(n -1)
+
+print(factorielle_recursive(2))
 
 # Crée une fonction factorielle avec boucle
 def factorielle_boucle(n):
-    pass  # À compléter
+    resultat = 1
+    for i in range(1, n + 1):
+        resultat *= i
+        
+    return resultat
+
+print(factorielle_boucle(2))
 
 # Crée une fonction qui prend une liste de nombres et retourne la moyenne
 def moyenne(liste):
-    pass  # À compléter
-
+    resultat = 0
+    
+    for n in liste:
+        resultat += n
+        
+    print(resultat / len(liste))
+        
+moyenne([2, 5, 18, 20, 16])
 
 # 5. Structures de données
 # --------------------------------
 # Trie une liste de nombres sans utiliser sorted()
 def tri_personnalise(liste):
-    pass  # À compléter
+    for i in range(0, len(liste)):
+        for j in range(i+1, len(liste)):
+            if liste[i] >= liste[j]:
+                liste[i], liste[j] = liste[j], liste[i]
+                
+    return liste
+
+print(tri_personnalise([10, 48, 0, 23, 5, 4, 78]))
 
 # Crée un dictionnaire qui compte les occurrences de chaque lettre dans une phrase
 def compte_lettres(phrase):
-    pass  # À compléter
+    compteur = {}
+    
+    for lettre in phrase:
+        if lettre != "":
+            lettre = lettre.lower()
+            
+            if lettre in compteur:
+                compteur[lettre] += 1
+            else:
+                compteur[lettre] = 1
+    
+    return compteur
+
+print(compte_lettres("Hello World"))
 
 # Écris une fonction qui retourne la clé avec la plus grande valeur dans un dictionnaire
 def cle_max_valeur(dico):
