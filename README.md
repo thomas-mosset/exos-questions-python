@@ -1,10 +1,10 @@
-# FAQ Python - Questions et Concepts Clés
+# FAQ Python - Questions et Concepts Clés & Exercices
 
-Ce *repository* regroupe une série de questions fréquemment posées et leurs réponses détaillées sur différents concepts importants de Python.
+Ce *repository* regroupe une série de questions fréquemment posées et leurs réponses détaillées sur différents concepts importants de Python. Ainsi qu'une série d’exercices dans le fichier `exos.py`.
 
 ---
 
-## Contenu couvert
+## Contenu couvert dans les questions
 
 - Gestion des exceptions (`try/except/finally/else`)  
 - Vérification et conversion des types  
@@ -30,3 +30,16 @@ Ce document est conçu pour être une ressource rapide et claire pour tout·e d�
 ## Utilisation
 
 Chaque question est accompagnée d’exemples de code pour illustrer les concepts abordés.
+
+## Exercices
+
+Les exercices servent à l’apprentissage ou la révision. Chaque bloc de code est autonome et peut être testé individuellement. Ils couvrent les fondamentaux de Python à travers des exemples concrets, structurés par thème :
+
+- Types de base et conversions  
+- Opérations et conditions  
+- Boucles et itérations  
+- Fonctions (boucles, récursives, lambda)  
+- Structures de données (listes, dictionnaires, tri)  
+- Programmation orientée objet (POO)  
+- Compréhensions de liste et `map`/`filter`  
+- Manipulation de chaînes de caractères  
