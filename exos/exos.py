@@ -207,10 +207,20 @@ def liste_pairs(liste):
 
 print(liste_pairs([0, 1, 2, 3, 4, 5, 6, 7, 8]))
 
-# Utilise map() et filter() avec des fonctions lambda (exemple simple)
+# Utilise map() et filter() avec des fonctions lambda
 def map_filter_exemple():
-    pass  # À compléter
+    noms = [" Alice ", "Bob", "   Charlie", "Dave", "Eve  ", "Charlotte"]
 
+    # Nettoyer les espaces + mettre en minuscule
+    noms_nettoyes = list(map(lambda nom: nom.strip().lower(), noms))
+
+    # Garder uniquement les noms qui commencent par la lettre "c" (minuscule /!\ sensible à la casse)
+    noms_filtres = list(filter(lambda nom: nom.startswith("c"), noms_nettoyes))
+
+    print("Noms nettoyés :", noms_nettoyes)
+    print("Noms filtrés (commençant par 'c') :", noms_filtres)
+
+map_filter_exemple()
 
 # 7. Classes et programmation orientée objet
 # --------------------------------
@@ -223,17 +233,17 @@ class CompteBancaire:
 
     # méthode d’instance
     def afficher_solde(self):
-        pass  # À compléter
+        print(f"{self.titulaire} a un solde de {self.solde}€ sur son compte bancaire.")
 
     # méthode de classe
     @classmethod
     def nom_banque(cls):
-        pass  # À compléter
+        print(f"Ma banque s'appelle {cls.banque}.")
 
     # méthode statique
     @staticmethod
     def taux_interet():
-        pass  # À compléter
+        print("Les taux d'intérêts sont de 2%.")
 
 
 # Test de la classe
@@ -243,7 +253,5 @@ def test_compte_bancaire():
     CompteBancaire.nom_banque()
     CompteBancaire.taux_interet()
 
-
 if __name__ == "__main__":
-    # Ici, tu peux appeler tes fonctions pour tester ton code
-    pass
+    test_compte_bancaire()
